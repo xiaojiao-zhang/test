@@ -1,0 +1,39 @@
+# http://www.graphviz.org/content/cluster
+
+digraph G {
+
+edge [fontname="NSimSun"];
+node [ fontname="NSimSun"];
+
+
+subgraph cluster_0 {
+"//float ave(int a,int b,int c)";
+"float x" [shape=retangle];
+"x=(a+b+c)/3.0" [shape=retangle];
+"return x" [shape=retangle];
+"float x"->"x=(a+b+c)/3.0"->"return x";
+}
+subgraph cluster_1 {
+"//void grading()";    
+"int a,b,c,i" [shape=retangle];
+"open in.txt" [shape=retangle];
+"open out.txt" [shape=retangle];
+"i=0" [shape=retangle];
+"if i<10" [shape=diamond];
+"infile"[shape=retangle,label="读取in.txt中a,b,c的值" ];
+"outfile" [shape=retangle,label="把读取的值放到ave()中运算后得到的值乘以100取整数,存到out.txt中"];
+"i++" [shape=retangle];
+"关闭in.txt" [shape=retangle];
+"关闭out.txt" [shape=retangle];
+"int a,b,c,i"->"open in.txt"->"open out.txt"->"i=0"->"if i<10";
+"if i<10"->"infile" [label=true,fontcolor=green];
+"infile"->"outfile"->"i++"->"if i<10" 
+"if i<10"->"关闭in.txt"[label=false,fontcolor=red];
+"关闭in.txt"->"关闭out.txt";
+}
+"cout" [shape =parallelogram,label="cout 3,6,8的平均值是：ave(3,6,8)"];
+"Start"->"cout"->"float x";
+"return x"->"cout"->"int a,b,c,i";
+"关闭out.txt"->"return 0"->"End";
+}
+
